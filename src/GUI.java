@@ -9,6 +9,7 @@ public class GUI {
     private JButton helpButton;
     private JTextArea textArea1;
     private JPanel panelen;
+    String filename;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("GUI");
@@ -22,45 +23,44 @@ public class GUI {
         openButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String File;
                 JFileChooser fc = new JFileChooser();
                 int result = fc.showOpenDialog(null);
-                String filnamn;
+
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    filnamn = fc.getSelectedFile().getAbsolutePath();
+                    File = fc.getSelectedFile().getAbsolutePath();
                 } else {
-                    filnamn = "exempel.txt";
+                    File = "exempel.txt";
                 }
-                FileWriter fw = null;
-                try {
-                    fw = new FileWriter(filnamn);
-                } catch (IOException e0) {
-                    e0.printStackTrace();
-                }
+
+
                 FileReader fr = null;
                 try {
-                    fr = new FileReader(filnamn);
+                    fr = new FileReader(File);
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
-                BufferedReader infil = new BufferedReader(fr);
-                PrintWriter outFile = new PrintWriter(fw);
-                String rad;
+                BufferedReader inFile = new BufferedReader(fr);
+
                 try {
-                    while ((rad = infil.readLine() ) != null){
-                        outFile.println(rad);
+                    String line = inFile.readLine();
+                    while ((line = inFile.readLine()) != null) {
+                        textArea1.append(line + "\n");
                     }
-                    infil.close();
-                    outFile.flush();
-                    outFile.close();
-                } catch (IOException e2) {
-                    e2.printStackTrace();
+
+                    inFile.close();
+
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                 }
+
             }
         });
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Not finished!");
+             JOptionPane.showMessageDialog(null, "Not finished!");
             }
         });
         helpButton.addActionListener(new ActionListener() {
