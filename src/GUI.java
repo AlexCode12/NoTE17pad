@@ -60,7 +60,26 @@ public class GUI {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-             JOptionPane.showMessageDialog(null, "Not finished!");
+                String Filename = JOptionPane.showInputDialog(null, "Vad ska filen heta?");
+                FileWriter fw = null;
+                File newFile = new File(Filename);
+                try {
+                    fw = new FileWriter(Filename);
+
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter outfile = new PrintWriter(bw);
+
+
+                String line;
+                line = textArea1.getText();
+                outfile.println(line);
+                outfile.flush();
+                outfile.close();
+            JOptionPane.showMessageDialog(null, "Filen har nu sparats!");
             }
         });
         helpButton.addActionListener(new ActionListener() {
