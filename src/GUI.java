@@ -43,7 +43,7 @@ public class GUI {
                 BufferedReader inFile = new BufferedReader(fr);
 
                 try {
-                    String line = inFile.readLine();
+                    String line;
                     while ((line = inFile.readLine()) != null) {
                         textArea1.append(line + "\n");
                     }
@@ -85,7 +85,7 @@ public class GUI {
         helpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Not finished!");
+                JOptionPane.showMessageDialog(null, "Made in 2019.");
             }
         });
     }
